@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 
-class AricleList extends Component {
+class ArticleList extends Component {
     render() {
         return (
-            <div>
+            <div className="article-list">
                 <ul>
                     {this.getList()}
                 </ul>
@@ -14,9 +14,9 @@ class AricleList extends Component {
 
     getList() {
         return this.props.articles.map((article, index) =>
-            <li key={article.id}><Article article = {article} /></li>
+            <li className="article-item" key={article.id}><Article article = {article} /></li>
         )
     }
 }
 
-export default AricleList
+export default ArticleList
