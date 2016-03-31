@@ -19,7 +19,7 @@ class Article extends Component {
 
         return (
             <div className="article">
-                <h3 className="title" onClick={this.handleClick}>{title}</h3>
+                <h2 className="title" onClick={this.handleClick}>{title}</h2>
                 {body}
             </div>
         )

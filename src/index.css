@@ -1,0 +1,55 @@
+html, body {
+    font: 16px normal sans-serif;
+    background-color: #ededed;	
+    margin: 0;
+    padding: 0;
+}
+ul {
+		padding-left: 0px;
+}
+.article-list {
+		margin: 15px;
+}
+.article-item {
+		background-color: #fff;
+		padding: 15px;
+		margin: 10px;
+		list-style-position: inside;
+}
+.article {
+
+}
+.title {
+	margin: 10px 0 0 0;
+	cursor: pointer;
+	font-weight: normal;
+}
+.title:hover {
+	text-decoration: underline;
+}
+.body {
+	margin-left: 13px;
+}
+.comments p {
+	cursor: pointer;
+	color: blue;
+	font-size: 14px;
+}
+.comments p:hover {
+	text-decoration: underline;
+}
+.amount {
+	color: gray;
+}
+.comments .no-comments {
+	cursor: default;
+	color: gray;
+}
+.comments .no-comments:hover {
+	text-decoration: none;
+}
+.comment {
+	margin: 10px 5px;
+	padding: 10px 5px 5px 5px;
+	border-top: 1px #eee solid;	
+}

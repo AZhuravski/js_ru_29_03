@@ -13,7 +13,7 @@ class CommentsList extends Component {
         const commentsLink = this.props.comments? 
             <p onClick={this.handleClick}>show comments <span className="amount">({commentsAmount})</span></p>
             :
-            <p>no comments</p>
+            <p className="no-comments">no comments</p>
         const body = this.state.isOpen ? 
             <div className="comments">
                 <p onClick={this.handleClick}>hide comments <span className="amount">({commentsAmount})</span></p>
