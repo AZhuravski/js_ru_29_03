@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
+import componentOpened from '../HOC/componentOpened'
 
-class AricleList extends Component {
+class ArticleList extends Component {
     state = {
         selectedArticles: [],
-        openedArticle: ''
     }
 
     render() {
@@ -24,7 +24,7 @@ class AricleList extends Component {
                     article = {article}
                     isSelected = {this.state.selectedArticles.includes(article.id)}
                     selectArticle = {this.selectArticle}
-                    articleIsOpen = { (this.state.openedArticle==article.id) }
+                    articleIsOpen = { (this.props.openedComponent==article.id) }
                     openArticle = {this.openArticle}
                 />
             </li>
@@ -38,11 +38,8 @@ class AricleList extends Component {
     }
 
     openArticle = (id) => {
-        this.setState({
-            openedArticle: id
-        })
-        console.log(this.state.openedArticle);
+        this.props.componentOpened(id)
     }
 }
 
-export default AricleList
+export default componentOpened(ArticleList)

@@ -3,7 +3,6 @@ import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
 import toggleOpen from '../HOC/toggleOpen'
 
-
 class Article extends Component {
 
     render() {
