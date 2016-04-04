@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
-import toggleOpen from '../HOC/toggleOpen'
+//import toggleOpen from '../HOC/toggleOpen'
 
 class Article extends Component {
 
@@ -24,6 +24,11 @@ class Article extends Component {
 */
     }
 
+    handleClick = (ev) => {
+        const { article: {id}, openArticle } = this.props
+        this.props.openArticle(id)
+    }
+
     handleSelect = (ev) => {
         const { article: {id}, selectArticle } = this.props
         selectArticle(id)
@@ -40,9 +45,7 @@ class Article extends Component {
         )
     }
 
-    handleClick = (ev) => {
-        this.props.toggleOpen()
-    }
 }
 
-export default toggleOpen(Article)
+//export default toggleOpen(Article)
+export default Article
