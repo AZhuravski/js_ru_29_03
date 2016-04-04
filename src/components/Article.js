@@ -7,7 +7,7 @@ import toggleOpen from '../HOC/toggleOpen'
 class Article extends Component {
 
     render() {
-        const { article: { title }, isSelected } = this.props
+        const { article: { title }, isSelected, articleIsOpen } = this.props
         const style = isSelected ? {color: 'red'} : null
         return (
             <div ref = "articleContainer">
@@ -31,8 +31,8 @@ class Article extends Component {
     }
 
     getBody() {
-        if (!this.props.isOpen) return null
         const { article } = this.props
+        if (!this.props.articleIsOpen) return null
         return (
             <section>
                 {article.text}
@@ -42,7 +42,14 @@ class Article extends Component {
     }
 
     handleClick = (ev) => {
+        const { article: {id}, articleIsOpen, openArticle } = this.props
+        const articleId = articleIsOpen? '' : id
+
+        // open-close click
         this.props.toggleOpen()
+
+        // open exact article and close the rest
+        openArticle(articleId)
     }
 }
 
