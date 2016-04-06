@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
-import componentOpened from '../HOC/componentOpened'
+import singleOpen from '../HOC/singleOpen'
 
 class ArticleList extends Component {
     state = {
@@ -18,14 +18,15 @@ class ArticleList extends Component {
     }
 
     getList() {
+        const { isOpen, openItem } = this.props
         return this.props.articles.map((article, index) =>
             <li key={article.id}>
                 <Article
                     article = {article}
                     isSelected = {this.state.selectedArticles.includes(article.id)}
                     selectArticle = {this.selectArticle}
-                    articleIsOpen = { (this.props.openedComponent==article.id) }
-                    openArticle = {this.openArticle}
+                    openItem = {openItem(article.id)}
+                    isOpen = {isOpen(article.id)}
                 />
             </li>
         )
@@ -36,10 +37,6 @@ class ArticleList extends Component {
             selectedArticles: this.state.selectedArticles.concat(id)
         })
     }
-
-    openArticle = (id) => {
-        this.props.componentOpened(id)
-    }
 }
 
-export default componentOpened(ArticleList)
+export default singleOpen(ArticleList)
