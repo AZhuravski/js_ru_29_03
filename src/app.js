@@ -1,6 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import ArticleList from './components/ArticleList'
-import { articles } from './fixtures'
+import AppContainer from './components/AppContainer'
+import { articleStore } from './stores'
 
-render(<ArticleList articles = {articles} />, document.getElementById('container'))
+articleStore.addChangeListener(()=>console.log('---','changed'))
+
+render(<AppContainer />, document.getElementById('container'))

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
+import {deleteArticle} from '../AC/articles'
 
 class Article extends Component {
 
@@ -10,7 +11,8 @@ class Article extends Component {
         return (
             <div ref = "articleContainer">
                 <h3 onClick = {openItem} style = {style}>{title}</h3>
-                <a href = "#" onClick = {this.handleSelect}>select this article</a>
+                <a href = "#" onClick = {this.handleSelect}>select</a>&nbsp;|&nbsp;
+                <a href = "#" onClick = {this.deleteArticle}>delete</a>
                 {this.getBody()}
             </div>
         )
@@ -21,6 +23,11 @@ class Article extends Component {
         console.log('---', this.refs);
         console.log('---', 'commentList: ', this.refs.commentList, findDOMNode(this.refs.commentList));
 */
+    }
+
+    deleteArticle = (ev) => {
+        ev.preventDefault()
+        deleteArticle(this.props.article.id)
     }
 
     handleSelect = (ev) => {
