@@ -37,6 +37,10 @@ class SimpleStore extends EventEmitter {
         return Object.keys(this.__items).map(this.getById)
     }
 
+    getLength = () => {
+        return this.__items.length
+    }
+
     __add = (item) => {
         this.__items[item.id] = new DataWrapper(item, this)
     }

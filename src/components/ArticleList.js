@@ -33,6 +33,7 @@ class AricleList extends Component {
                     deleteArticle = {this.props.deleteArticle}
                     isSelected = {this.state.selectedArticles.includes(article.id)}
                     selectArticle = {this.selectArticle}
+                    nextCommentId = {this.props.nextCommentId}
                 />
             </li>
         )
