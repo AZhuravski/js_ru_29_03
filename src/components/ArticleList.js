@@ -2,9 +2,14 @@ import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import singleOpen from '../HOC/singleOpen'
 
-class ArticleList extends Component {
+class AricleList extends Component {
     state = {
-        selectedArticles: [],
+        selectedArticles: []
+    }
+
+    static propTypes = {
+        articles: PropTypes.array.isRequired,
+        deleteArticle: PropTypes.func.isRequired
     }
 
     render() {
@@ -23,10 +28,11 @@ class ArticleList extends Component {
             <li key={article.id}>
                 <Article
                     article = {article}
-                    isSelected = {this.state.selectedArticles.includes(article.id)}
-                    selectArticle = {this.selectArticle}
                     openItem = {openItem(article.id)}
                     isOpen = {isOpen(article.id)}
+                    deleteArticle = {this.props.deleteArticle}
+                    isSelected = {this.state.selectedArticles.includes(article.id)}
+                    selectArticle = {this.selectArticle}
                 />
             </li>
         )
@@ -39,4 +45,4 @@ class ArticleList extends Component {
     }
 }
 
-export default singleOpen(ArticleList)
+export default singleOpen(AricleList)
