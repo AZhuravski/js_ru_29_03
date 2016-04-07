@@ -36,6 +36,7 @@ class AppContainer extends Component {
 
     render() {
         const comments = commentStore.getAll()
+        //использовать length для id не лучший выбор
         const nextCommentId = comments.length
         return <ArticleList 
             articles = {this.state.articles} 
