@@ -1,6 +1,13 @@
 import AppDispatcher from '../dispatcher'
 import SimpleStore from './SimpleStore'
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, START, SUCCESS, FAIL } from '../constants'
+import { DELETE_ARTICLE
+        , ADD_COMMENT
+        , LOAD_ALL_ARTICLES
+        , LOAD_ARTICLE
+        , START
+        , SUCCESS
+        , FAIL 
+} from '../constants'
 
 class ArticleStore extends SimpleStore {
     constructor(...args) {
@@ -15,11 +22,12 @@ class ArticleStore extends SimpleStore {
                     break
 
                 case ADD_COMMENT:
-                    const article = this.getById(data.articleId)
+                    let article = this.getById(data.articleId)
                     article.comments = (article.comments || []).concat(data.id)
                     break
 
                 case LOAD_ALL_ARTICLES + START:
+                case LOAD_ARTICLE + START:
                     this.loading = true
                     break
 
@@ -28,7 +36,13 @@ class ArticleStore extends SimpleStore {
                     this.loading = false
                     break;
 
+                case LOAD_ARTICLE + SUCCESS:
+                    this.__add(response)
+                    this.loading = false
+                    break;
+
                 case LOAD_ALL_ARTICLES + FAIL:
+                case LOAD_ARTICLE + FAIL:
                     this.error = error
                     break;
 

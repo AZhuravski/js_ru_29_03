@@ -8,11 +8,13 @@ class Article extends Component {
         selectArticle: PropTypes.func.isRequired,
         isSelected: PropTypes.bool,
         openItem: PropTypes.func.isRequired,
-        deleteArticle: PropTypes.func.isRequired
+        deleteArticle: PropTypes.func.isRequired,
+        loadArticle: PropTypes.func.isRequired
     }
     render() {
-        const { article: { title }, isSelected, openItem, deleteArticle } = this.props
+        const { article: { title }, isSelected, openItem, deleteArticle, loadArticle } = this.props
         const style = isSelected ? {color: 'red'} : null
+        // console.log("--- Article: ", isOpen);
         return (
             <div ref = "articleContainer">
                 <h3 onClick = {openItem} style = {style}>{title}</h3>
@@ -33,6 +35,16 @@ class Article extends Component {
         console.log('---', this.refs);
         console.log('---', 'commentList: ', this.refs.commentList, findDOMNode(this.refs.commentList));
 */
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isOpen > this.props.isOpen) {
+
+            console.log('--- next isOpen: ',nextProps.isOpen);
+            // вот здесь самая заковырка )
+            // после вызова этой функции статья всегда закрыта! почему?
+            this.props.loadArticle(this.props.article.id)();
+        }
     }
 
     handleSelect = (ev) => {

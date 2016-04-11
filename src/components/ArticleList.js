@@ -9,10 +9,12 @@ class AricleList extends Component {
 
     static propTypes = {
         articles: PropTypes.array.isRequired,
-        deleteArticle: PropTypes.func.isRequired
+        deleteArticle: PropTypes.func.isRequired,
+        loadArticle: PropTypes.func.isRequired
     }
 
     render() {
+        console.log('---> ',this.props.openItemId);
         return (
             <div>
                 <ul>
@@ -31,6 +33,7 @@ class AricleList extends Component {
                     openItem = {openItem(article.id)}
                     isOpen = {isOpen(article.id)}
                     deleteArticle = {this.props.deleteArticle}
+                    loadArticle = {this.props.loadArticle}
                     isSelected = {this.state.selectedArticles.includes(article.id)}
                     selectArticle = {this.selectArticle}
                     nextCommentId = {this.props.nextCommentId}
