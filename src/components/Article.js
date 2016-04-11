@@ -3,14 +3,20 @@ import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
 
 class Article extends Component {
-
+    static propTypes = {
+        article: PropTypes.object.isRequired,
+        selectArticle: PropTypes.func.isRequired,
+        isSelected: PropTypes.bool,
+        openItem: PropTypes.func.isRequired,
+        deleteArticle: PropTypes.func.isRequired
+    }
     render() {
         const { article: { title }, isSelected, openItem, deleteArticle } = this.props
         const style = isSelected ? {color: 'red'} : null
         return (
             <div ref = "articleContainer">
                 <h3 onClick = {openItem} style = {style}>{title}</h3>
-                <a href = "#" onClick = {this.handleSelect}>select this article</a>&nbsp;|&nbsp;
+                <a href = "#" onClick = {this.handleSelect}>select this article</a> |
                 <a href = "#" onClick = {this.deleteArticle}>delete this article</a>
                 {this.getBody()}
             </div>
@@ -40,12 +46,7 @@ class Article extends Component {
         return (
             <section>
                 {article.text}
-                <CommentList 
-                    articleId = {this.props.article.id}
-                    comments = {article.getRelation('comments')} 
-                    addComment = {this.props.addComment}
-                    nextCommentId = {this.props.nextCommentId}
-                    ref = "commentList" />
+                <CommentList article = {article} ref = "commentList" />
             </section>
         )
     }

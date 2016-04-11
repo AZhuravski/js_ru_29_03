@@ -11,9 +11,11 @@ class CommentStore extends SimpleStore {
 
             switch (type) {
                 case ADD_COMMENT:
-                    this.__items[data.id] = data
-                    this.emitChange()
-                    break;
+                    this.__add({
+                        text: data.text,
+                        id: data.id
+                    })
+                    break
             }
         })
     }
