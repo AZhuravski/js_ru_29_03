@@ -38,6 +38,7 @@ class Article extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        //если б здесь была проверка, нужно ли загружать текст - статью можно было бы открыть
         if (nextProps.isOpen > this.props.isOpen) {
 
             console.log('--- next isOpen: ',nextProps.isOpen);
