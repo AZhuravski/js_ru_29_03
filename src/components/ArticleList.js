@@ -10,18 +10,21 @@ class AricleList extends Component {
     static propTypes = {
         articles: PropTypes.array.isRequired,
         deleteArticle: PropTypes.func.isRequired,
-        loadArticle: PropTypes.func.isRequired
+        loadArticle: PropTypes.func.isRequired,
     }
 
     render() {
-        console.log('---> ',this.props.openItemId);
-        return (
-            <div>
-                <ul>
-                    {this.getList()}
-                </ul>
-            </div>
-        )
+        if (this.props.loading && !this.props.openItemId) {
+            return <h1>Loading...</h1>
+        } else {
+            return (
+                <div>
+                    <ul>
+                        {this.getList()}
+                    </ul>
+                </div>
+            )            
+        }
     }
 
     getList() {
@@ -37,6 +40,7 @@ class AricleList extends Component {
                     isSelected = {this.state.selectedArticles.includes(article.id)}
                     selectArticle = {this.selectArticle}
                     nextCommentId = {this.props.nextCommentId}
+                    loading = {this.props.loading}
                 />
             </li>
         )

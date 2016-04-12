@@ -18,6 +18,6 @@ export function asyncAC(apiCall, type, args=null) {
                     type: type + FAIL,
                     error
                 }))
-        }, 1)
+        }, 1000)
     }
 }

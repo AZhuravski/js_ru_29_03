@@ -15,14 +15,17 @@ class AppContainer extends Component {
 
     render() {
         const { articles, loading } = this.props
-        if (loading) return <h1>Loading...</h1>
+        if (!loading && !articles.length) {
+            return <h1>Loading...</h1>
+        }
         //вы вешаете лоадер сразу на все, соответственно сначала убирается старый ArticcleList, ставиться Loader,
         //потом новый ArticleList. 
         //Нужно показывать лоадер для статьи, или внести в ArticleList
         return <ArticleList
                     articles = {articles} 
                     deleteArticle = {deleteArticle}
-                    loadArticle = {loadArticle} />
+                    loadArticle = {loadArticle} 
+                    loading = {loading} />
     }
 }
 

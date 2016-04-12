@@ -14,7 +14,6 @@ class Article extends Component {
     render() {
         const { article: { title }, isSelected, openItem, deleteArticle, loadArticle } = this.props
         const style = isSelected ? {color: 'red'} : null
-        // console.log("--- Article: ", isOpen);
         return (
             <div ref = "articleContainer">
                 <h3 onClick = {openItem} style = {style}>{title}</h3>
@@ -39,11 +38,7 @@ class Article extends Component {
 
     componentWillReceiveProps(nextProps) {
         //если б здесь была проверка, нужно ли загружать текст - статью можно было бы открыть
-        if (nextProps.isOpen > this.props.isOpen) {
-
-            console.log('--- next isOpen: ',nextProps.isOpen);
-            // вот здесь самая заковырка )
-            // после вызова этой функции статья всегда закрыта! почему?
+        if (nextProps.isOpen > this.props.isOpen && !nextProps.article.text) {
             this.props.loadArticle(this.props.article.id)();
         }
     }
@@ -56,12 +51,16 @@ class Article extends Component {
     getBody() {
         if (!this.props.isOpen) return null
         const { article } = this.props
-        return (
-            <section>
-                {article.text}
-                <CommentList article = {article} ref = "commentList" />
-            </section>
-        )
+        if (this.props.loading) {
+            return <h4>Article Loading...</h4>
+        } else {
+            return (
+                <section>
+                    {article.text}
+                    <CommentList article = {article} ref = "commentList" />
+                </section>
+            )            
+        }
     }
 }
 

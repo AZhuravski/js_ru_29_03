@@ -10,7 +10,6 @@ export default (Component) => class SingleOpenHOC extends ReactComponent {
         this.setState({ 
             openItemId: openItemId
         })
-        console.log('--- ',openItemId);
     }
 
     isOpen = id => this.state.openItemId === id
