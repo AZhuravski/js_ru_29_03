@@ -1,18 +1,27 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
+import { loadArticleById } from '../AC/articles'
 
 class Article extends Component {
     static propTypes = {
         article: PropTypes.object.isRequired,
-        selectArticle: PropTypes.func.isRequired,
+        selectArticle: PropTypes.func,
         isSelected: PropTypes.bool,
-        openItem: PropTypes.func.isRequired,
+        isOpen: PropTypes.bool.isRequired,
+        openItem: PropTypes.func,
         deleteArticle: PropTypes.func.isRequired,
-        loadArticle: PropTypes.func.isRequired
+        ignoreLoading: PropTypes.bool
     }
+
+    componentWillReceiveProps(nextProps) {
+        const { article, isOpen, ignoreLoading } = nextProps
+        if (ignoreLoading) return
+        if (isOpen && !this.props.isOpen && !article.text) loadArticleById({id: article.id})
+    }
+
     render() {
-        const { article: { title }, isSelected, openItem, deleteArticle, loadArticle } = this.props
+        const { article: { title }, isSelected, openItem, deleteArticle } = this.props
         const style = isSelected ? {color: 'red'} : null
         return (
             <div ref = "articleContainer">
@@ -36,31 +45,21 @@ class Article extends Component {
 */
     }
 
-    componentWillReceiveProps(nextProps) {
-        //если б здесь была проверка, нужно ли загружать текст - статью можно было бы открыть
-        if (nextProps.isOpen > this.props.isOpen && !nextProps.article.text) {
-            this.props.loadArticle(this.props.article.id)();
-        }
-    }
-
     handleSelect = (ev) => {
         const { article: {id}, selectArticle } = this.props
-        selectArticle(id)
+        if (selectArticle) selectArticle(id)
     }
 
     getBody() {
         if (!this.props.isOpen) return null
         const { article } = this.props
-        if (this.props.loading) {
-            return <h4>Article Loading...</h4>
-        } else {
-            return (
-                <section>
-                    {article.text}
-                    <CommentList article = {article} ref = "commentList" />
-                </section>
-            )            
-        }
+        if (article.loading) return <h3>Loading...</h3>
+        return (
+            <section>
+                {article.text}
+                <CommentList article = {article} ref = "commentList" />
+            </section>
+        )
     }
 }
 
