@@ -7,7 +7,7 @@ const stores = {}
 
 Object.assign(stores, {
     articles: new ArticleStore(stores),
-    comments: new CommentStore(stores, normalizedComments)
+    comments: new CommentStore(stores)
 })
 
 //for debug only
