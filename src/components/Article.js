@@ -6,6 +6,7 @@ import { loadArticleById } from '../AC/articles'
 class Article extends Component {
     static propTypes = {
         article: PropTypes.object.isRequired,
+        comments: PropTypes.array.isRequired,
         selectArticle: PropTypes.func,
         isSelected: PropTypes.bool,
         isOpen: PropTypes.bool.isRequired,
@@ -62,12 +63,12 @@ class Article extends Component {
 
     getBody() {
         if (!this.props.isOpen) return null
-        const { article } = this.props
+        const { article, comments } = this.props
         if (article.loading) return <h3>Loading...</h3>
         return (
             <section>
                 {article.text}
-                <CommentList article = {article} ref = "commentList" />
+                <CommentList article = {article} comments = {comments.articleComments} ref = "commentList" />
             </section>
         )
     }

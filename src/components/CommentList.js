@@ -23,9 +23,10 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { article, isOpen } = this.props
-        const comments = article.getRelation('comments')
+        const { article, isOpen, comments } = this.props
+        
         if (!isOpen || !comments) return null
+
         const commetItems = comments.map(comment => <li key={comment.id}><Comment comment = {comment}/></li>)
         return <ul>
                 {commetItems}
