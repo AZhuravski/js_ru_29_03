@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import CommentsContainer from '../containers/Comments'
+import CommentsPageContainer from '../containers/CommentsPageContainer'
 
 class CommentsPage extends Component {
     static propTypes = {
@@ -7,12 +7,9 @@ class CommentsPage extends Component {
     };
 
     render() {
-        const { page } = this.props.params
-
         return (
             <div>
-                <h3>Comments page {page}</h3>
-                <CommentsContainer page = {page} key = {page} />
+                <CommentsPageContainer page = {this.props.params.page} />
             </div>
         )
     }

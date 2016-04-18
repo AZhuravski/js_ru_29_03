@@ -1,5 +1,5 @@
 import $ from 'jquery'
 
-export function loadCommentsPart({ limit, offset }) {
-    return $.get(`/api/comment?limit=${limit}&offset=${offset}`)
+export function loadForPage({ page }) {
+    return $.get(`/api/comment?limit=10&offset=${(page - 1) * 10}`)
 }

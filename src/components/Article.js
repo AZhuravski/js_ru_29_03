@@ -14,6 +14,11 @@ class Article extends Component {
         ignoreLoading: PropTypes.bool
     }
 
+    static contextTypes = {
+        router: PropTypes.object,
+        style: PropTypes.object
+    }
+
     componentWillReceiveProps(nextProps) {
         const { article, isOpen, ignoreLoading } = nextProps
         if (ignoreLoading) return
@@ -22,15 +27,20 @@ class Article extends Component {
 
     render() {
         const { article: { title }, isSelected, openItem, deleteArticle } = this.props
-        const style = isSelected ? {color: 'red'} : null
+        const { style } = this.context
         return (
             <div ref = "articleContainer">
                 <h3 onClick = {openItem} style = {style}>{title}</h3>
-                <a href = "#" onClick = {this.handleSelect}>select this article</a> |
+                <a href = "#" onClick = {this.handleRedirectToComments}>redirect to all comments</a> |
                 <a href = "#" onClick = {this.deleteArticle}>delete this article</a>
                 {this.getBody()}
             </div>
         )
+    }
+
+    handleRedirectToComments = (ev) => {
+        ev.preventDefault()
+        this.context.router.push('/comments')
     }
 
     deleteArticle = (ev) => {
