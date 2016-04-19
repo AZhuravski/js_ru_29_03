@@ -25,9 +25,10 @@ class CommentList extends Component {
     getBody() {
         const { article, isOpen, comments } = this.props
         
-        if (!isOpen || !comments) return null
+        // if (!isOpen || !comments) return null
+        if (!isOpen) return null
 
-        const commetItems = comments.map(comment => <li key={comment.id}><Comment comment = {comment}/></li>)
+        const commetItems = comments? comments.map(comment => <li key={comment.id}><Comment comment = {comment}/></li>) : null
         return <ul>
                 {commetItems}
                 <li>{this.getCommentInput()}</li>

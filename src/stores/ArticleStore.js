@@ -17,7 +17,7 @@ class ArticleStore extends SimpleStore {
                     break
 
                 case ADD_COMMENT:
-                    AppDispatcher.waitFor([this.getStore('comment').dispatchToken])
+                    //AppDispatcher.waitFor([this.getStore('comment').dispatchToken])
                     article = this.getById(data.articleId)
                     article.comments = (article.comments || []).concat(data.id)
                     break

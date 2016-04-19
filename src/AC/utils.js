@@ -24,3 +24,10 @@ export function asyncAC(apiCall, type, callback) {
         }, 1000)
     }
 }
+
+export function promisification(fun, ...args) {
+    return new Promise(function(resolve, reject) {
+        fun(...args);
+        resolve(...args);
+    });
+}

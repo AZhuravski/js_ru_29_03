@@ -7,7 +7,7 @@ class CommentStore extends SimpleStore {
     constructor(...args) {
         super(...args)
         this.pagination = {}
-        this.articleComments = []
+        //this.articleComments = []
 
         this.dispatchToken = AppDispatcher.register((action) => {
             const { type, data, response } = action
@@ -18,7 +18,7 @@ class CommentStore extends SimpleStore {
                         text: data.text,
                         id: data.id
                     })
-                    break
+                    break;
 
                 case LOAD_COMMENTS_FOR_PAGE + START:
                     this.pagination[data.page] = LOADING
@@ -31,12 +31,12 @@ class CommentStore extends SimpleStore {
                     break;
 
                 case LOAD_COMMENTS_FOR_ARTICLE + START:
-                    AppDispatcher.waitFor([this.getStore('articles').dispatchToken])
+                    this.articleComments = []
                     break;
 
                 case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
-                    console.log('response:',response);
-                    this.articleComments = response
+                    //this.articleComments = response
+                    response.forEach(this.__update)
                     break;
 
                 default: return
@@ -51,6 +51,15 @@ class CommentStore extends SimpleStore {
         if (!pagination) loadCommentsForPage({ page })
         if (!pagination || pagination == LOADING) return LOADING
         return pagination.map(this.getById)
+    }
+
+    getByArticleId = (id) => {
+        let articleComments = []
+        for (let key in this.__items){
+            const comment = this.getById(key)
+            articleComments = (comment.article === +id)? articleComments.concat(this.getById(key)) : articleComments
+        }
+        return articleComments
     }
 }
 

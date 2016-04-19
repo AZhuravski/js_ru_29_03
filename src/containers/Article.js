@@ -27,12 +27,11 @@ class ArticleContainer extends Component {
 }
 
 function getState(stores, props) {
-    const { id } = props
+    const { id } = props        
     const article = stores.articles.getById(id)
+    const comments = stores.comments.getByArticleId(id)
+    
     if (!article || !article.text && !article.loading) loadArticleById({ id })
-
-    const comments = []
-    if (!comments.length && article && article.text) loadArticleComments({ id })
 
     return { article, comments }
 }
