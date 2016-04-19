@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Navigation from '../containers/Navigation'
+import Login from '../containers/Login'
 import { Link } from 'react-router'
 
 class Articles extends Component {
@@ -20,6 +21,7 @@ class Articles extends Component {
     render() {
         return (
             <div>
+                <Login />
                 <h3 onClick={this.redirectToNew}>New article</h3>
                 <Navigation />
                 {this.props.children}
