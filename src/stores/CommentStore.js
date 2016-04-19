@@ -7,7 +7,6 @@ class CommentStore extends SimpleStore {
     constructor(...args) {
         super(...args)
         this.pagination = {}
-        //this.articleComments = []
 
         this.dispatchToken = AppDispatcher.register((action) => {
             const { type, data, response } = action
@@ -16,7 +15,8 @@ class CommentStore extends SimpleStore {
                 case ADD_COMMENT:
                     this.__add({
                         text: data.text,
-                        id: data.id
+                        id: data.id,
+                        article: data.articleId
                     })
                     break;
 
@@ -31,11 +31,9 @@ class CommentStore extends SimpleStore {
                     break;
 
                 case LOAD_COMMENTS_FOR_ARTICLE + START:
-                    this.articleComments = []
                     break;
 
                 case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
-                    //this.articleComments = response
                     response.forEach(this.__update)
                     break;
 

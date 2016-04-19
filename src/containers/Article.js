@@ -30,7 +30,7 @@ function getState(stores, props) {
     const { id } = props        
     const article = stores.articles.getById(id)
     const comments = stores.comments.getByArticleId(id)
-    
+
     if (!article || !article.text && !article.loading) loadArticleById({ id })
 
     return { article, comments }

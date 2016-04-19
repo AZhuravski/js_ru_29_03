@@ -7,7 +7,8 @@ export function addComment(text, articleId) {
     AppDispatcher.dispatch({
         type: ADD_COMMENT,
         data: {
-            text, articleId,
+            text, 
+            articleId,
             id: Date.now()
         }
     })
