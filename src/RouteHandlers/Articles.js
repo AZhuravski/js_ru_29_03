@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Navigation from '../containers/Navigation'
 import Login from '../containers/Login'
 import { Link } from 'react-router'
+import connectToStore from '../HOC/connectToStore'
 
 class Articles extends Component {
     static propTypes = {
@@ -9,12 +10,14 @@ class Articles extends Component {
     };
 
     static childContextTypes = {
-        style: PropTypes.object
+        style: PropTypes.object,
+        user: PropTypes.string
     }
 
     getChildContext() {
         return {
-            style: {color: 'green'}
+            style: {color: 'green'},
+            user: this.props.userName
         }
     }
 
@@ -34,4 +37,9 @@ class Articles extends Component {
     }
 }
 
-export default Articles
+function getState(stores) {
+    const userName = stores.user.userName
+    return { userName }
+}
+
+export default connectToStore(['user'], getState)(Articles)

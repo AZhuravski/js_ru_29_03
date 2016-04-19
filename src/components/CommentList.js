@@ -8,7 +8,12 @@ class CommentList extends Component {
         commentText: ''
     }
 
+    static contextTypes = {
+        user: PropTypes.string
+    }
+
     render() {
+        console.log('>>>',this.contex);
         return (
             <div>
                 {this.getLink()}

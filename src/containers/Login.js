@@ -7,17 +7,14 @@ class Login extends Component {
         loginText: ''
     }
 
-
-    static propTypes = {
-
-    };
-
     static contextTypes = {
-
+        style: PropTypes.object,
+        user: PropTypes.string
     }
 
     render() {
-        const userName = this.props.userName? 'User: '+this.props.userName : null
+        const user = this.context.user
+        const userName = user? 'User: '+user : null
 
         return (
             <div>
@@ -49,10 +46,4 @@ class Login extends Component {
     }
 }
 
-function getState(stores) {
-    return {
-        userName: stores.user.userName
-    }
-}
-
-export default connectToStore(['user'], getState)(Login)
+export default Login
