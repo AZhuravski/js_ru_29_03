@@ -33,7 +33,13 @@ class Articles extends Component {
     }
 
     redirectToNew = (ev) => {
-        this.props.history.push('/articles/new')
+        if (this.props.userName) { 
+            this.props.history.push('/articles/new') 
+        } else {
+            alert('please login to see new article')
+            return;
+        }
+
     }
 }
 

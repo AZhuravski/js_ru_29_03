@@ -16,7 +16,8 @@ class CommentStore extends SimpleStore {
                     this.__add({
                         text: data.text,
                         id: data.id,
-                        article: data.articleId
+                        article: data.articleId,
+                        user: data.userName
                     })
                     break;
 

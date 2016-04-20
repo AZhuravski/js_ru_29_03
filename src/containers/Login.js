@@ -18,7 +18,7 @@ class Login extends Component {
 
         return (
             <div>
-                {userName}<br/>
+                {userName}<br/><br/>
                 {this.getUserInput()}
             </div>
         )

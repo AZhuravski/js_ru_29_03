@@ -13,7 +13,6 @@ class CommentList extends Component {
     }
 
     render() {
-        console.log('>>>',this.contex);
         return (
             <div>
                 {this.getLink()}
@@ -49,7 +48,10 @@ class CommentList extends Component {
 
     addComment = (ev) => {
         ev.preventDefault()
-        addComment(this.state.commentText, this.props.article.id)
+        const user = this.context.user? this.context.user : 'guest'
+        addComment(this.state.commentText
+            ,this.props.article.id
+            ,user)
         this.setState({
             commentText: ''
         })

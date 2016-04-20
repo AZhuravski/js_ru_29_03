@@ -4,7 +4,7 @@ require('./style.css')
 function Comment(props) {
     return (
         <div className="comment-body">
-            {props.comment.id} - {props.comment.text}
+            {props.comment.id} - {props.comment.user} : {props.comment.text}
         </div>
     )
 }
