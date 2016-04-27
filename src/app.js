@@ -1,12 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Root from './containers/Root'
 import store from './store'
-import { increment } from './AC/counter'
+import routes from './routes'
 
 window.store = store
 
-render(<Root store = {store} />, document.getElementById('container'))
+render(routes, document.getElementById('container'))
 
 /*
 function wrappedIncrement() {

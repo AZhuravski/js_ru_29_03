@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Counter from './Counter'
-import Articles from './Articles'
 import { Provider } from 'react-redux'
 import DevTools from './DevTools'
+import ArticleList from './ArticleList'
 
 class Root extends Component {
     static propTypes = {
@@ -14,7 +14,7 @@ class Root extends Component {
             <Provider store={this.props.store}>
                 <div>
                     <Counter />
-                    <Articles />
+                    <ArticleList />
                     <DevTools />
                 </div>
             </Provider>
