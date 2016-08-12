@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import Select from 'react-select'
 require('react-select/dist/react-select.css')
+import CSSTransition from 'react-addons-css-transition-group'
+require('./animation.css')
 
 class ArticleList extends Component {
     static propTypes = {
@@ -24,7 +26,15 @@ class ArticleList extends Component {
                     valueKey = "id"
                     labelKey = "title"
                 />
-                {items}
+                <CSSTransition
+                    transitionName="example"
+                    transitionAppear = {true}
+                    transitionAppearTimeout = {1000}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}
+                >
+                    {items}
+                </CSSTransition>
             </ul>
         )
     }
