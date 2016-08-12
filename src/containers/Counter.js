@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react'
+
+// Connect - Redux tool which connects Store, AC to component.
+// Connect is also HOC - hi-ordered component.
 import { connect } from 'react-redux'
 import { increment as pureInrement } from '../AC/counter'
 
