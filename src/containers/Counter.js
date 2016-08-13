@@ -1,5 +1,11 @@
 import React, { Component, PropTypes } from 'react'
+
+// Connect - Redux tool which connects Store, AC to component.
+// Connect is also HOC - hi-ordered component.
+// Connect takes Store from Context provided by Provider in Root.js container
+
 import { connect } from 'react-redux'
+// AC for connect
 import { increment as pureInrement } from '../AC/counter'
 
 class Counter extends Component {
@@ -24,7 +30,11 @@ class Counter extends Component {
     }
 }
 
+// Connect gets store part, where necessary part of the store is taken and appropriate ACs
+
 export default connect((state) => {
+
+    // here can be more complex logic...
     const { counter } = state
     return {count: counter}
 }, {
